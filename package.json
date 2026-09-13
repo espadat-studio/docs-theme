@@ -1,0 +1,23 @@
+{
+  "name": "@espadat/docs-theme",
+  "version": "0.1.0",
+  "description": "Shared Starlight theme for Espadat tool documentation sites.",
+  "type": "module",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/espadat-studio/docs-theme.git"
+  },
+  "exports": {
+    "./components/*": "./src/components/*",
+    "./styles/*": "./src/styles/*"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "peerDependencies": {
+    "@astrojs/starlight": "^0.42.0",
+    "astro": "^7.2.10"
+  }
+}
