@@ -1,0 +1,105 @@
+/* The bridge. tokens.css is the design system; this file is the only place
+   that knows Starlight exists.
+
+   Nothing here is wrapped in @layer. Every Starlight rule lives in a
+   `starlight.*` layer, and an unlayered declaration beats a layered one
+   whatever its specificity, so these win without !important and without
+   guessing at selector weight. Keep it that way. */
+
+@import "./fonts.css";
+@import "./tokens.css";
+
+:root {
+  color-scheme: light;
+
+  --sl-font: var(--face-display);
+
+  /* Starlight's light ramp runs dark at gray-1 to pale at gray-7. The chart has
+     two inks and three stocks, so steps collapse. */
+  --sl-color-white: var(--ink);
+  --sl-color-gray-1: var(--ink);
+  --sl-color-gray-2: var(--ink);
+  --sl-color-gray-3: var(--ink-soft);
+  --sl-color-gray-4: var(--ink-soft);
+  --sl-color-gray-5: var(--rule);
+  --sl-color-gray-6: var(--stock-deep);
+  --sl-color-gray-7: var(--stock-tint);
+  --sl-color-black: var(--stock);
+
+  --sl-color-text: var(--ink);
+  --sl-color-text-invert: var(--stock);
+  --sl-color-bg: var(--stock);
+  --sl-color-bg-nav: var(--stock);
+  --sl-color-bg-sidebar: var(--stock);
+  --sl-color-bg-inline-code: var(--stock-deep);
+  --sl-color-backdrop-overlay: color-mix(in srgb, var(--ink) 66%, transparent);
+
+  --sl-color-hairline: var(--rule);
+  --sl-color-hairline-light: var(--rule);
+  --sl-color-hairline-shade: var(--rule);
+
+  /* --shoal tints water and carries no text; --shoal-ink is the one that
+     measures 4.67:1 on buff, so every accent Starlight renders type in takes
+     the darker value. */
+  --sl-color-accent-low: var(--stock-tint);
+  --sl-color-accent: var(--shoal-ink);
+  --sl-color-accent-high: var(--shoal-ink);
+  --sl-color-text-accent: var(--shoal-ink);
+  --sl-color-bg-accent: var(--shoal-ink);
+
+  /* Asides. Starlight wants four hues; the chart has one sounding and one
+     overprint, so note/tip/green read as water and caution/danger as the
+     overprint, separated by the 0.25rem border rather than by fill.
+
+     The `-low` slots stay on --stock rather than a tint because the `-high`
+     slots are title and link text on top of them: --shoal-ink is 4.67:1 on
+     --stock but only 4.21:1 on --stock-tint. --caution never appears in a
+     `-high` slot — an 18px 600 aside title is not large text. */
+  --sl-color-blue-low: var(--stock);
+  --sl-color-blue: var(--shoal);
+  --sl-color-blue-high: var(--shoal-ink);
+  --sl-color-purple-low: var(--stock);
+  --sl-color-purple: var(--shoal);
+  --sl-color-purple-high: var(--shoal-ink);
+  --sl-color-green-low: var(--stock);
+  --sl-color-green: var(--shoal);
+  --sl-color-green-high: var(--shoal-ink);
+  --sl-color-orange-low: var(--stock);
+  --sl-color-orange: var(--caution);
+  --sl-color-orange-high: var(--caution-deep);
+  --sl-color-red-low: var(--stock);
+  --sl-color-red: var(--caution);
+  --sl-color-red-high: var(--caution-deep);
+}
+
+/* Chrome is chart lettering, prose is chart legend: the narrow face labels,
+   the serif reads. */
+.site-title,
+.sidebar-content,
+.right-sidebar-panel,
+mobile-starlight-toc,
+.pagination-links {
+  font-family: var(--face-data);
+}
+
+.pagination-links a {
+  border-color: var(--rule);
+}
+
+/* tokens.css colours every anchor --ink, unlayered, so it wins in the three
+   places Starlight puts a link on an inked fill too — and --ink on --shoal-ink
+   is 3.02:1. Hand those three back their inverted colour. */
+.sidebar-content a[aria-current="page"],
+.sl-banner a,
+a.sl-skip-link:focus {
+  color: var(--sl-color-text-invert);
+}
+
+/* Starlight leaves sidebar and nav links undecorated and tokens.css only
+   recolours the underline, so those stay clean. Prose links keep the browser
+   underline, recoloured to --rule, and --caution arrives on hover. Both come
+   from tokens.css; the one thing to undo here is Starlight repainting an
+   anchor on hover, which would move the colour instead of the rule. */
+.sl-markdown-content a:hover:not(:where(.not-content *)) {
+  color: var(--ink);
+}

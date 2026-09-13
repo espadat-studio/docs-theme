@@ -1,0 +1,61 @@
+---
+import StarlightFooter from "@astrojs/starlight/components/Footer.astro";
+
+import { siblingsOf } from "../data/sites";
+
+const siblings = siblingsOf(Astro.site);
+---
+
+<StarlightFooter />
+
+<div class="studio" data-pagefind-ignore>
+  <hr class="rule" />
+  <div class="studio-row data">
+    <a class="credit" href="https://espadat.com">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <path d="M6 7 H52 L28 43 H6 Z" fill="currentColor"></path>
+        <rect x="6" y="49" width="52" height="7" fill="currentColor"></rect>
+      </svg>
+      <span>Designed and built by Espadat</span>
+    </a>
+    <nav class="siblings" aria-label="Other Espadat documentation">
+      {siblings.map((site) => <a href={`https://${site.host}`}>{site.name}</a>)}
+    </nav>
+  </div>
+</div>
+
+<style>
+  .studio {
+    margin-top: 3rem;
+  }
+  .studio-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    padding-top: 1rem;
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+  }
+  .credit {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  /* Frozen geometry, transcribed from espadat.com's design/mark.svg, which
+     design/mark.md calls the only source — there is no build step here to
+     derive it. Re-sync by hand if that file ever moves. 20px clears the 16px
+     floor the mark is verified down to. */
+  .mark {
+    width: 20px;
+    height: 20px;
+    flex: none;
+  }
+  .siblings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+</style>
