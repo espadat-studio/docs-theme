@@ -20,8 +20,7 @@ espadat.com  (independent, last)
 
 ## Phase 1 — the theme
 
-Repo: `espadat-studio/docs-theme`. Nothing else can start. Issue not yet filed —
-this repo is local-only until it is created on GitHub.
+Repo: `espadat-studio/docs-theme` — #1. Nothing else can start.
 
 | Commit | Contents |
 |---|---|
