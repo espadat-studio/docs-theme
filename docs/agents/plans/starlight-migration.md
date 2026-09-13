@@ -20,7 +20,8 @@ espadat.com  (independent, last)
 
 ## Phase 1 — the theme
 
-Repo: `espadat-studio/docs-theme`. Nothing else can start.
+Repo: `espadat-studio/docs-theme`. Nothing else can start. Issue not yet filed —
+this repo is local-only until it is created on GitHub.
 
 | Commit | Contents |
 |---|---|
@@ -33,7 +34,7 @@ Repo: `espadat-studio/docs-theme`. Nothing else can start.
 Checks: build one throwaway consumer locally and confirm link contrast
 (`--ink` links, `--rule` underline, `--caution` on hover only — never as link colour below 24px).
 
-## Phase 2 — auberge
+## Phase 2 — auberge — espadat-studio/auberge#860
 
 The hard one. 108 pages. Everything that will go wrong surfaces here.
 
@@ -54,10 +55,12 @@ Pagefind search returns results; no `docs/agents/` content reachable as a page.
 
 ## Phase 3 — dublette, colporteur
 
+espadat-studio/dublette#67 · espadat-studio/colporteur#76
+
 Same sequence, 14 and 11 pages. Independent of each other, parallelisable.
 Both need a `renovate.json` created from scratch — neither has one.
 
-## Phase 4 — espadat.com
+## Phase 4 — espadat.com — espadat-studio/espadat.com#1
 
 | Commit | Contents |
 |---|---|
@@ -66,8 +69,7 @@ Both need a `renovate.json` created from scratch — neither has one.
 
 ## Loose ends, unblocked, any time
 
-- `auberge/CLAUDE.md` says the backlog is at `sripwoud/auberge`. It is `espadat-studio/auberge`.
-- `auberge/README.md` links Colporteur at `github.com/sripwoud/colporteur`.
+- Stale `sripwoud/` org references — espadat-studio/auberge#861.
 - Renovate on all three consumers is what keeps a pre-1.0 Starlight from rotting. Phase 2 and 3 carry it.
 
 ## Closing
