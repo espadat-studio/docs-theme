@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "group:allNonMajor", "helpers:pinGitHubActionDigests"],
+  "semanticCommits": "enabled",
+  "packageRules": [
+    {
+      "description": "peerDependency ranges are this package's published contract with its consumers. Widening one is a deliberate act: bump it, verify the theme still builds against the new range, and type it feat: or fix:. The >= ranges mean Renovate skips them today anyway - this makes that structural instead of incidental.",
+      "matchDepTypes": ["peerDependencies"],
+      "enabled": false
+    }
+  ]
+}
