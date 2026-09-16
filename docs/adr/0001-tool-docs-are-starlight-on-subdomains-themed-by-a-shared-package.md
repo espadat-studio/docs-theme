@@ -4,9 +4,11 @@
 
 Accepted, 2026-09-13. First ADR in this repo; this repo exists because of it.
 
+Amended 2026-09-16: the roster is five. `tagwerk` joined (espadat-studio/tagwerk#65) — an AUR-published tool with a README long enough to be the problem this ADR describes. `pi-memsearch` joined with it (espadat-studio/pi-memsearch#111), reversing the "no site" line below; the alternatives section records why. Nothing else changes; the reasoning was never about the number three.
+
 ## Decision
 
-**Each published tool keeps its own documentation site on its own subdomain** — `auberge.espadat.com`, `dublette.espadat.com`, `colporteur.espadat.com` — served from its own repo's GitHub Pages.
+**Each published tool keeps its own documentation site on its own subdomain** — `auberge.espadat.com`, `dublette.espadat.com`, `colporteur.espadat.com`, `tagwerk.espadat.com`, `pi-memsearch.espadat.com` — served from its own repo's GitHub Pages.
 
 **The substrate is Astro Starlight, not docsify and not mdBook.** The Astro project lives at `<repo>/docs/`, with content under `docs/src/content/docs/`.
 
@@ -16,7 +18,7 @@ Accepted, 2026-09-13. First ADR in this repo; this repo exists because of it.
 
 **The sites are light-only.** Starlight's theme toggle is suppressed.
 
-**The roster is frozen at three.** `pi-memsearch` gets no site. `etiquette` never inherits this theme — it is a separate product brand.
+**The roster is frozen at five.** `etiquette` never inherits this theme — it is a separate product brand.
 
 **`meta/` holds material that is not published; `docs/` holds material that is.** This was incidental before and is load-bearing now that `docs/` is a build directory.
 
@@ -65,7 +67,7 @@ Restructuring during a framework migration would change every internal link on t
 - **A Node toolchain in three Rust repos.** New `package.json`, new build step, new Pages workflow, and `build_type` flips off `legacy` in each.
 - **Starlight is pre-1.0** (0.42.0, peering `astro: ^7.2.10`). Breaking changes land. Renovate on all three consumers is what makes this survivable, and two of them have no renovate config today.
 - **133 files move and change.** Every page gains `title:` frontmatter; internal links lose their `.md` extensions. Mechanical, with a long tail.
-- **`docs/` stops meaning "documentation" and starts meaning "the documentation site project".** Internal material belongs in `meta/`. `pi-memsearch` keeps `docs/adr/` and `docs/agents/` because it publishes nothing.
+- **`docs/` stops meaning "documentation" and starts meaning "the documentation site project".** Internal material belongs in `meta/`, in every repo on the roster.
 - **16 hash-routed deep links** across three READMEs break and are rewritten by hand. No redirect shim: zero such links exist outside those READMEs.
 
 ## Alternatives considered
@@ -78,7 +80,7 @@ Restructuring during a framework migration would change every internal link on t
 - **Vendored theme files.** Rejected: silent drift, the same failure as hand-translated CSS.
 - **Keeping markdown at `docs/**/*.md` with the Astro project elsewhere.** Rejected: Starlight's `docsLoader()` takes only `{ generateId }` and resolves `src/content/docs/` from the project root. Preserving a directory name is not worth bypassing it for a raw `glob()` loader.
 - **Dark mode on the docs sites only.** Rejected: an inverted chart world with no tokens and no audit.
-- **A site for `pi-memsearch`.** Rejected: that is content work, not theme work. `studio.ts` already states the three-of-four asymmetry without apology.
+- **A site for `pi-memsearch`.** Rejected at the time: that is content work, not theme work. Reversed 2026-09-16 — the content work was scheduled (espadat-studio/pi-memsearch#111), which is all the objection was waiting on. The theme change is one roster line.
 - **`etiquette` inheriting this theme.** Rejected by an existing brand commitment: separate product brand, footer credit only.
 
 ## References
