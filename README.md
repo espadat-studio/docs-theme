@@ -13,7 +13,7 @@ Consumers: [auberge](https://auberge.espadat.com),
 ## Install
 
 ```json
-"@espadat/docs-theme": "github:espadat-studio/docs-theme#v0.1.0"
+"@espadat/docs-theme": "github:espadat-studio/docs-theme#v0.2.0"
 ```
 
 Peers `@astrojs/starlight@^0.42.0` and `astro@^7.2.10`.
