@@ -6,7 +6,8 @@ no build step here and nothing is published to npm.
 
 Consumers: [auberge](https://auberge.espadat.com),
 [dublette](https://dublette.espadat.com),
-[colporteur](https://colporteur.espadat.com).
+[colporteur](https://colporteur.espadat.com),
+[tagwerk](https://tagwerk.espadat.com).
 
 ## Install
 
@@ -60,14 +61,14 @@ same attribute, so code blocks depend on it too.
 
 ### Sibling links are derived, not configured
 
-The footer reads `site` from the Astro config and links to the other two hosts
+The footer reads `site` from the Astro config and links to the other three hosts
 in `src/data/sites.ts`. Nothing in the theme branches on which site it is, and
 no consumer repeats the roster. A `site` that is missing, or that is not one of
-the three, fails the build with a message naming the fix.
+the four, fails the build with a message naming the fix.
 
 The cost: adding or renaming a site is a theme release, not a consumer edit.
 That is the trade ADR-0001 already makes for `tokens.css`, and the roster it
-freezes at three.
+freezes at four.
 
 ## Constraints this package holds
 

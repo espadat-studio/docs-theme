@@ -4,9 +4,11 @@
 
 Accepted, 2026-09-13. First ADR in this repo; this repo exists because of it.
 
+Amended 2026-09-16: the roster is four. `tagwerk` joined (espadat-studio/tagwerk#65) — an AUR-published tool with a README long enough to be the problem this ADR describes. Nothing else changes; the reasoning below was never about the number three.
+
 ## Decision
 
-**Each published tool keeps its own documentation site on its own subdomain** — `auberge.espadat.com`, `dublette.espadat.com`, `colporteur.espadat.com` — served from its own repo's GitHub Pages.
+**Each published tool keeps its own documentation site on its own subdomain** — `auberge.espadat.com`, `dublette.espadat.com`, `colporteur.espadat.com`, `tagwerk.espadat.com` — served from its own repo's GitHub Pages.
 
 **The substrate is Astro Starlight, not docsify and not mdBook.** The Astro project lives at `<repo>/docs/`, with content under `docs/src/content/docs/`.
 
@@ -16,7 +18,7 @@ Accepted, 2026-09-13. First ADR in this repo; this repo exists because of it.
 
 **The sites are light-only.** Starlight's theme toggle is suppressed.
 
-**The roster is frozen at three.** `pi-memsearch` gets no site. `etiquette` never inherits this theme — it is a separate product brand.
+**The roster is frozen at four.** `pi-memsearch` gets no site. `etiquette` never inherits this theme — it is a separate product brand.
 
 **`meta/` holds material that is not published; `docs/` holds material that is.** This was incidental before and is load-bearing now that `docs/` is a build directory.
 
