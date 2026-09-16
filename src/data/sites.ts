@@ -3,14 +3,15 @@ export interface Site {
   name: string;
 }
 
-/* The roster ADR-0001 freezes at four. It lives here once, for the reason
-   tokens.css does: four hand-maintained copies drift. A consumer says which
+/* The roster ADR-0001 freezes at five. It lives here once, for the reason
+   tokens.css does: five hand-maintained copies drift. A consumer says which
    one it is by setting `site` in its Astro config, which it must set anyway. */
 export const SITES: Site[] = [
   { host: "auberge.espadat.com", name: "auberge" },
   { host: "dublette.espadat.com", name: "dublette" },
   { host: "colporteur.espadat.com", name: "colporteur" },
   { host: "tagwerk.espadat.com", name: "tagwerk" },
+  { host: "pi-memsearch.espadat.com", name: "pi-memsearch" },
 ];
 
 export function siblingsOf(site: URL | undefined): Site[] {
