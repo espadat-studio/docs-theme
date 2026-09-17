@@ -6,6 +6,8 @@ Accepted, 2026-09-13. First ADR in this repo; this repo exists because of it.
 
 Amended 2026-09-17: the footer stopped linking its siblings. It carries the credit and one link to `espadat.com/#tools`, and the roster left this repo with it — `src/data/sites.ts` is deleted and nothing in the theme knows which site it renders. The substrate decision is untouched; see *Why the footer carries one link* for the arithmetic.
 
+Amended 2026-09-17: the hash-link inventory in *What it costs* was wrong twice over — 16 counted, not 9, and one category missed entirely: a docs URL baked into generated program output, not just README prose. `colporteur/src/config.rs`'s `SAMPLE_CONFIG` carried one, written verbatim into every user's `config.toml` by `colporteur init`; fixed in colporteur#77, caught only because a review pass grepped `src/` against the ADR's advice not to bother.
+
 Amended 2026-09-16: the roster is five. `tagwerk` joined (espadat-studio/tagwerk#65) — an AUR-published tool with a README long enough to be the problem this ADR describes. `pi-memsearch` joined with it (espadat-studio/pi-memsearch#111), reversing the "no site" line below; the alternatives section records why. Nothing else changes; the reasoning was never about the number three.
 
 ## Decision
@@ -80,7 +82,7 @@ The cost: a reader on one docs site can no longer reach another in one click. Tw
 - **Starlight is pre-1.0** (0.42.0, peering `astro: ^7.2.10`). Breaking changes land. Renovate on all three consumers is what makes this survivable, and two of them have no renovate config today.
 - **133 files move and change.** Every page gains `title:` frontmatter; internal links lose their `.md` extensions. Mechanical, with a long tail.
 - **`docs/` stops meaning "documentation" and starts meaning "the documentation site project".** Internal material belongs in `meta/`, in every repo on the roster.
-- **16 hash-routed deep links** across three READMEs break and are rewritten by hand. No redirect shim: zero such links exist outside those READMEs.
+- **9 hash-routed deep links** across three READMEs break and are rewritten by hand — 0 in auberge, 4 in dublette, 5 in colporteur. One more sits outside any README: `colporteur/src/config.rs`'s `SAMPLE_CONFIG`, a docs URL embedded in program output, written verbatim into every `config.toml` that `colporteur init` generates. A README grep misses that category entirely, and it ships to users in binaries already installed. No general redirect shim; each of these 10 is rewritten by hand.
 
 ## Alternatives considered
 
