@@ -4,6 +4,8 @@
 
 Accepted, 2026-09-13. First ADR in this repo; this repo exists because of it.
 
+Amended 2026-09-17: the footer stopped linking its siblings. It carries the credit and one link to `espadat.com/#tools`, and the roster left this repo with it — `src/data/sites.ts` is deleted and nothing in the theme knows which site it renders. The substrate decision is untouched; see *Why the footer carries one link* for the arithmetic.
+
 Amended 2026-09-16: the roster is five. `tagwerk` joined (espadat-studio/tagwerk#65) — an AUR-published tool with a README long enough to be the problem this ADR describes. `pi-memsearch` joined with it (espadat-studio/pi-memsearch#111), reversing the "no site" line below; the alternatives section records why. Nothing else changes; the reasoning was never about the number three.
 
 ## Decision
@@ -18,7 +20,7 @@ Amended 2026-09-16: the roster is five. `tagwerk` joined (espadat-studio/tagwerk
 
 **The sites are light-only.** Starlight's theme toggle is suppressed.
 
-**The roster is frozen at five.** `etiquette` never inherits this theme — it is a separate product brand.
+**`etiquette` never inherits this theme** — it is a separate product brand, footer credit only. Nothing else is frozen: the theme stopped enumerating its consumers on 2026-09-17, so there is no roster here left to freeze.
 
 **`meta/` holds material that is not published; `docs/` holds material that is.** This was incidental before and is load-bearing now that `docs/` is a build directory.
 
@@ -61,6 +63,16 @@ This is the decision most likely to annoy the primary audience — developers re
 Starlight can autogenerate a sidebar from the directory tree. auberge's `_sidebar.md` deliberately groups across directories — `core-concepts/architecture.md` is filed under *Getting Started* — and autogeneration discards that editorial judgement.
 
 Restructuring during a framework migration would change every internal link on top of the extension rewrite and require a redirect table. One thing at a time.
+
+### Why the footer carries one link and not its siblings
+
+The first footer rendered the other four hosts on every page, which is `N(N-1)` links across the roster: 6 at three tools, 20 at five, 56 at eight. Width was the visible cost — the row already wrapped below about 700px — but relevance was the real one. A `tagwerk` reader is on Arch tracking their hours; `colporteur` turns newsletters into Atom feeds. The overlap is nil, so four equally weighted uppercase names read as a sitemap rather than a recommendation, and they sat at the same visual weight as the one link that sells.
+
+`espadat.com/#tools` already lists the whole roster with versions and licences, and `espadat.com/#work` already makes the cross-host consistency argument these sites exist to support. One link to the apex does both jobs, scales to any roster, and routes a docs reader to the page that converts instead of scattering them across subdomains.
+
+It settles the SEO question by not asking it. All-to-all site-wide linking between five first-party subdomains is worth nothing here — the section above already prices referrers as GitHub and crates.io — so the links were never load-bearing for discovery.
+
+The cost: a reader on one docs site can no longer reach another in one click. Two clicks via the apex, on a path that reads the roster off the page that maintains it.
 
 ## What it costs
 
