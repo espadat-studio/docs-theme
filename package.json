@@ -14,7 +14,7 @@
     "./styles/*": "./src/styles/*"
   },
   "scripts": {
-    "test": "node --test"
+    "test": "node --test src/styles/contrast.test.mjs"
   },
   "peerDependencies": {
     "@astrojs/starlight": "^0.42.0",
