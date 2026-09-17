@@ -25,7 +25,8 @@ import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  // Required. The footer reads it to work out which site this is.
+  // Required by Astro for canonicals and the sitemap. The footer does not
+  // read it — nothing in this theme branches on which site it is.
   site: "https://auberge.espadat.com",
   integrations: [
     starlight({
@@ -48,7 +49,7 @@ consumer names.
 
 | Override | What it does |
 |---|---|
-| `Footer` | Keeps Starlight's own footer — edit link, last-updated, prev/next — then adds the mark, the studio credit linking to `espadat.com`, and links to the other two sites |
+| `Footer` | Keeps Starlight's own footer — edit link, last-updated, prev/next — then adds the mark, the studio credit linking to `espadat.com`, and one link to the Given away table there |
 | `ThemeSelect` | Renders nothing. Removes the theme picker |
 | `ThemeProvider` | Pins `data-theme="light"` |
 
@@ -60,16 +61,17 @@ stays — including for anyone carrying a `starlight-theme: dark` value from
 another Starlight site. Expressive Code picks its light style variant off the
 same attribute, so code blocks depend on it too.
 
-### Sibling links are derived, not configured
+### The footer carries one outbound link
 
-The footer reads `site` from the Astro config and links to the other four hosts
-in `src/data/sites.ts`. Nothing in the theme branches on which site it is, and
-no consumer repeats the roster. A `site` that is missing, or that is not one of
-the five, fails the build with a message naming the fix.
+The credit links to `espadat.com` and one link beside it goes to the Given away
+table there, which lists every tool with its licence. The theme holds no roster
+and reads nothing off the Astro config, so adding a sixth tool needs no release
+here.
 
-The cost: adding or renaming a site is a theme release, not a consumer edit.
-That is the trade ADR-0001 already makes for `tokens.css`, and the roster it
-freezes at five.
+This replaced an all-to-all sibling nav on 2026-09-17. Each site rendered the
+other four, which is `N(N-1)` links across the roster — 20 at five tools, 56 at
+eight — and gave four links nobody arrived for the same visual weight as the one
+that sells. ADR-0001 records the reasoning and the trade.
 
 ## Constraints this package holds
 

@@ -1,13 +1,19 @@
 ---
 import StarlightFooter from "@astrojs/starlight/components/Footer.astro";
-
-import { siblingsOf } from "../data/sites";
-
-const siblings = siblingsOf(Astro.site);
 ---
 
 <StarlightFooter />
 
+{/* One outbound link, not the roster. Each site used to render the other four,
+    which is N(N-1) links across the roster — 20 at five tools — and put four
+    links nobody arrived for at the same visual weight as the one that sells. A
+    tagwerk reader is on Arch tracking hours; colporteur turns newsletters into
+    feeds. The overlap is nil, so the row read as a sitemap rather than a
+    recommendation. `espadat.com/#tools` lists the whole roster with licences
+    and is the page that converts, so it does that job once. See ADR-0001.
+
+    Consequence worth keeping: the theme holds no roster and reads nothing off
+    the Astro config, so a sixth tool needs no release here. */}
 <div class="studio" data-pagefind-ignore>
   <hr class="rule" />
   <div class="studio-row data">
@@ -18,9 +24,9 @@ const siblings = siblingsOf(Astro.site);
       </svg>
       <span>Designed and built by Espadat</span>
     </a>
-    <nav class="siblings" aria-label="Other Espadat documentation">
-      {siblings.map((site) => <a href={`https://${site.host}`}>{site.name}</a>)}
-    </nav>
+    <a class="more" href="https://espadat.com/#tools">
+      More tools<span aria-hidden="true"> &rarr;</span>
+    </a>
   </div>
 </div>
 
@@ -51,11 +57,9 @@ const siblings = siblingsOf(Astro.site);
     height: 20px;
     flex: none;
   }
-  .siblings {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 1.4rem;
+  .more {
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    white-space: nowrap;
   }
 </style>
