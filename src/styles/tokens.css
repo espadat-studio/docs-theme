@@ -1,11 +1,11 @@
 /* Espadat design system.
-   Shared verbatim by / and /mallorca. Those two pages vary in density,
+   Shared verbatim by / and the four SME pages. Those pages vary in density,
    language and length; nothing in this file varies between them. */
 
 :root {
   /* Admiralty chart stock and inks. One light world by design: a chart is a
-     printed object and does not invert. Buff also cuts glare, which /mallorca
-     needs for phones read outdoors. */
+     printed object and does not invert. Buff also cuts glare, which the SME
+     pages need for phones read outdoors. */
   --stock: #ede4d0;
   --stock-tint: #e4d9c1;
   --stock-deep: #d9ccae;
@@ -14,23 +14,33 @@
   --ink-soft: #4a5158;
 
   /* Chart values. --shoal is the contract hex and tints water, where no text
-     sits on it. --shoal-ink is one step darker and is used ONLY as the SOUNDED
+     sits on it. --shoal-ink is one step darker and is used ONLY as the PUBLISHED
      chip fill: buff text on #4a7c82 measures 3.69:1, and an 11px 600 chip is
      small text needing 4.5:1. #3f6b72 measures 4.67:1. */
   --shoal: #4a7c82;
   --shoal-ink: #3f6b72;
+  /* The sea band's water: the chip's teal, so the pair's 4.67:1 already
+     covers every size of --stock text set on it. The mockup's lighter foam
+     text measures 4.47:1 on it and is not used. Ink measures 3.02:1 on it,
+     so ink never sits on the sea. */
+  --sea: var(--shoal-ink);
+
+  /* The hero's reflection. It carries no meaning, at 2.17:1 on --sea. */
+  --sea-hi: #7fa3a8;
 
   /* Caution overprint. Appears once per viewport and is always the action.
-     #d6008b on buff is 3.92:1 — under 4.5:1, but its only uses are the 24px
-     hero link and the 34px contact link, which are large text at any weight
-     and need 3:1. Do not use it below 24px. */
+     #d6008b on buff is 3.92:1 — under 4.5:1, so it is never set as text
+     below 24px, where it would need 3:1 as large text. On the sea it carries
+     no text at all: the address and the WhatsApp action wear it only as
+     an underline. */
   --caution: #d6008b;
   --caution-deep: #a30069;
 
   --rule: #b3a488;
 
-  --face-display: "Spectral", Georgia, "Times New Roman", serif;
-  --face-data: "Archivo Narrow", "Arial Narrow", Helvetica, Arial, sans-serif;
+  /* --face-text (Schibsted Grotesk), --face-data (Martian Mono) and
+     --face-display (Big Shoulders Display) are declared by astro.config's `fonts`, which owns the subsets, the fallback
+     stack and the metric overrides that keep the swap from shifting layout. */
 
   --step--1: 0.8125rem;
   --step-0: 1rem;
@@ -39,7 +49,9 @@
   --step-3: 2.125rem;
   --step-4: clamp(2.6rem, 6.5vw, 4rem);
 
-  --measure: 68ch;
+  /* 68ch of Schibsted Grotesk, in em: a `ch` is the fallback's zero until
+     the face lands, so a ch measure widened every column on swap. */
+  --measure: 41.5em;
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
   --frame: 78rem;
 }
@@ -57,14 +69,11 @@ html {
 body {
   background: var(--stock);
   color: var(--ink);
-  font-family: var(--face-display);
+  font-family: var(--face-text);
   font-size: var(--step-0);
   font-weight: 400;
   line-height: 1.6;
   margin: 0;
-  /* espadat.com paints a repeating hairline grid on body here. Removed: the
-     hairlines fight long-form prose and code blocks, which is all a docs page
-     is. This is the only difference from the original. */
 }
 
 /* Browser surfaces. These ship with defaults belonging to no design system. */
@@ -117,4 +126,28 @@ a:focus-visible {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* The sea band, on every surface that has one. Every letter on it is
+   --stock, 4.67:1; ink would be 3.02:1 and --sea-hi 2.17:1. */
+.sea {
+  background: var(--sea);
+  color: var(--stock);
+}
+.sea a {
+  color: var(--stock);
+  text-decoration-color: var(--stock);
+}
+/* Magenta measures 1.19:1 on the teal, so the ring would vanish. */
+.sea a:focus-visible {
+  outline-color: var(--stock);
 }
