@@ -13,7 +13,7 @@ Consumers: [auberge](https://auberge.espadat.com),
 ## Install
 
 ```json
-"@espadat/docs-theme": "github:espadat-studio/docs-theme#v0.3.0"
+"@espadat/docs-theme": "github:espadat-studio/docs-theme#v0.4.0"
 ```
 
 Peers `@astrojs/starlight@^0.42.0` and `astro@^7.2.10`.
@@ -97,21 +97,25 @@ so they cannot go stale.
 
 ## Editing the design system
 
-`src/styles/tokens.css` is a copy of `espadat.com/src/styles/tokens.css` with
-one deletion: the paper-grid `background-image` on `body`, whose hairlines fight
-long-form prose and code blocks. A `git diff --no-index` against the original
-should show that one hunk and nothing else. Changes belong in `espadat.com`
-first, then get copied here.
+`src/styles/tokens.css` is a verbatim copy of `espadat.com/src/styles/tokens.css`.
+A `git diff --no-index` against the original should show nothing. Changes
+belong in `espadat.com` first, then get copied here.
 
 `src/styles/theme.css` is the only file that knows Starlight exists. It maps
 tokens onto `--sl-*` custom properties, unlayered — every Starlight rule sits in
 an `@layer starlight.*`, and unlayered declarations beat layered ones whatever
 their specificity, so nothing here needs `!important`. Keep it unlayered.
 
-`src/fonts/` holds twelve woff2 files copied byte-for-byte from `@fontsource`:
-Spectral 400/600 in roman and italic, Archivo Narrow 400/600 roman, each in
-latin and latin-ext. Declared as `@font-face` in `fonts.css`. No request leaves
-for the Google Fonts CDN.
+`src/fonts/` holds eight woff2 files copied byte-for-byte from `@fontsource`
+5.3.0, the versions espadat.com locks: Schibsted Grotesk and Martian Mono, each
+400/600 roman in latin and latin-ext. `fonts.css` declares them and the
+`--face-text` and `--face-data` tokens, standing in for the `fonts` block in
+espadat.com's `astro.config`, which a CSS-only package cannot reach. No request
+leaves for a font CDN.
+
+Prose and chrome set in Schibsted Grotesk; code blocks and inline code in
+Martian Mono. Starlight's weight-700 `strong` and `dt` resolve to 600, the
+studio's bold, because nothing heavier is installed.
 
 The mark in `footer.astro` is transcribed from `espadat.com/design/mark.svg`,
 which `design/mark.md` calls the only source. There is no build step here to
@@ -122,8 +126,12 @@ derive it, so re-sync by hand if that file changes.
 - Code blocks keep Starlight's bundled Night Owl Light syntax colours on a buff
   ground. The frame follows the chart; the tokens inside it do not.
 - Starlight's rounded corners are untouched. The chart has none.
-- Three faces espadat.com loads are not shipped: Spectral 300, Archivo Narrow
-  400-italic and 500. Nothing in Starlight's chrome asks for them. An italic in
-  a sidebar label or a pagination title would synthesize an oblique.
+- Big Shoulders Display is not shipped. espadat.com sets it only as poster
+  type — the hero, hub titles, the sea footer — and nothing here is that.
+- No metric-matched fallback faces. espadat.com's `astro.config` generates
+  `size-adjust` overrides so the swap does not shift layout; a CSS-only package
+  cannot, so docs pages reflow once when the faces land.
+- No italic ships, as on espadat.com. Markdown `*emphasis*` synthesizes an
+  oblique.
 
 AGPL-3.0-or-later.

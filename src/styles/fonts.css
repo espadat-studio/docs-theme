@@ -1,117 +1,91 @@
 /* Self-hosted faces. The woff2 in ../fonts/ are copied byte-for-byte from
-   @fontsource, which is where espadat.com gets them; the @font-face blocks are
-   declared here so nothing on a docs page reaches the Google Fonts CDN.
+   @fontsource 5.3.0, the versions espadat.com locks; the @font-face blocks are
+   declared here so nothing on a docs page reaches a font CDN.
 
-   Four Spectral faces and two Archivo Narrow. Starlight asks for weight 700
-   (`strong`, `dt`); with no 700 face installed the browser resolves it to 600,
-   which is the studio's bold. Adding a real 700 would make docs prose heavier
-   than espadat.com. */
+   espadat.com declares these faces and the --face-* tokens through
+   astro.config's `fonts`, which a CSS-only theme cannot reach, so this file
+   stands in for it and tokens.css stays a verbatim copy. The fallback stacks
+   are the ones astro.config names.
+
+   400 and 600 of each, roman only, as on espadat.com. Starlight asks for
+   weight 700 (`strong`, `dt`); with nothing above 600 installed the browser
+   resolves it to 600, which is the studio's bold. Big Shoulders Display is
+   not shipped: espadat.com sets it only as poster type, and nothing in
+   Starlight's chrome or this footer is that. */
+
+:root {
+  --face-text: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --face-data: "Martian Mono", ui-monospace, Menlo, Consolas, monospace;
+}
 
 @font-face {
-  font-family: "Spectral";
+  font-family: "Schibsted Grotesk";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/spectral-latin-400-normal.woff2") format("woff2");
+  src: url("../fonts/schibsted-grotesk-latin-400-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
 @font-face {
-  font-family: "Spectral";
+  font-family: "Schibsted Grotesk";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/spectral-latin-ext-400-normal.woff2") format("woff2");
+  src: url("../fonts/schibsted-grotesk-latin-ext-400-normal.woff2") format("woff2");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
 @font-face {
-  font-family: "Spectral";
-  font-style: italic;
-  font-weight: 400;
+  font-family: "Schibsted Grotesk";
+  font-style: normal;
+  font-weight: 600;
   font-display: swap;
-  src: url("../fonts/spectral-latin-400-italic.woff2") format("woff2");
+  src: url("../fonts/schibsted-grotesk-latin-600-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
 @font-face {
-  font-family: "Spectral";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/spectral-latin-ext-400-italic.woff2") format("woff2");
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-
-@font-face {
-  font-family: "Spectral";
+  font-family: "Schibsted Grotesk";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../fonts/spectral-latin-600-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-
-@font-face {
-  font-family: "Spectral";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("../fonts/spectral-latin-ext-600-normal.woff2") format("woff2");
+  src: url("../fonts/schibsted-grotesk-latin-ext-600-normal.woff2") format("woff2");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
 @font-face {
-  font-family: "Spectral";
-  font-style: italic;
-  font-weight: 600;
-  font-display: swap;
-  src: url("../fonts/spectral-latin-600-italic.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-
-@font-face {
-  font-family: "Spectral";
-  font-style: italic;
-  font-weight: 600;
-  font-display: swap;
-  src: url("../fonts/spectral-latin-ext-600-italic.woff2") format("woff2");
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-
-@font-face {
-  font-family: "Archivo Narrow";
+  font-family: "Martian Mono";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/archivo-narrow-latin-400-normal.woff2") format("woff2");
+  src: url("../fonts/martian-mono-latin-400-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
 @font-face {
-  font-family: "Archivo Narrow";
+  font-family: "Martian Mono";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/archivo-narrow-latin-ext-400-normal.woff2") format("woff2");
+  src: url("../fonts/martian-mono-latin-ext-400-normal.woff2") format("woff2");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
 @font-face {
-  font-family: "Archivo Narrow";
+  font-family: "Martian Mono";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../fonts/archivo-narrow-latin-600-normal.woff2") format("woff2");
+  src: url("../fonts/martian-mono-latin-600-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
 @font-face {
-  font-family: "Archivo Narrow";
+  font-family: "Martian Mono";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../fonts/archivo-narrow-latin-ext-600-normal.woff2") format("woff2");
+  src: url("../fonts/martian-mono-latin-ext-600-normal.woff2") format("woff2");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
-

@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { strict as assert } from "node:assert";
 import test from "node:test";
 
@@ -86,4 +86,30 @@ test("links are --ink underlined in --rule, with --caution arriving on hover", (
 
 test("the paper grid is gone, and nothing else in tokens.css paints the body", () => {
   assert.doesNotMatch(tokensCss, /background-image/);
+});
+
+const fontsCss = squish(read("./fonts.css"));
+const faces = [...fontsCss.matchAll(/@font-face \{([^}]*)\}/g)].map(([, body]) => ({
+  family: body.match(/font-family: "([^"]+)"/)[1],
+  weight: body.match(/font-weight: (\d+)/)[1],
+  src: body.match(/url\("([^"]+)"\)/)[1],
+}));
+
+test("every @font-face points at a woff2 in src/fonts, and every woff2 there is declared", () => {
+  const shipped = readdirSync(new URL("../fonts/", import.meta.url)).sort();
+  const declared = faces.map((face) => face.src.replace("../fonts/", "")).sort();
+  assert.deepEqual(declared, shipped);
+  assert.doesNotMatch(fontsCss, /url\("?https?:/);
+});
+
+test("each face ships 400 and 600 only, so Starlight's 700 resolves to 600", () => {
+  for (const family of new Set(faces.map((face) => face.family))) {
+    const weights = [...new Set(faces.filter((face) => face.family === family).map((face) => face.weight))].sort();
+    assert.deepEqual(weights, ["400", "600"], family);
+  }
+});
+
+test("Starlight reads the grotesk for prose and chrome, Martian Mono for code", () => {
+  assert.match(themeCss, /--sl-font: var\(--face-text\);/);
+  assert.match(themeCss, /--sl-font-mono: var\(--face-data\);/);
 });

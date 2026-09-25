@@ -4,6 +4,8 @@
 
 Accepted, 2026-09-13. First ADR in this repo; this repo exists because of it.
 
+Amended 2026-09-25: the sites set in espadat.com's waterline faces, Schibsted Grotesk and Martian Mono, from v0.4.0. espadat.com dropped its paper grid in the same redesign, so `tokens.css` is now a verbatim copy rather than a copy minus one hunk; the face tokens moved to `fonts.css`, because espadat.com declares them in `astro.config`, which this package cannot reach. The drift argument below is unchanged and is why the swap is one release, not five.
+
 Amended 2026-09-17: the footer stopped linking its siblings. It carries the credit and one link to `espadat.com/#tools`, and the roster left this repo with it — `src/data/sites.ts` is deleted and nothing in the theme knows which site it renders. The substrate decision is untouched; see *Why the footer carries one link* for the arithmetic.
 
 Amended 2026-09-17: the hash-link inventory in *What it costs* was wrong twice over — 16 counted, not 9, and one category missed entirely: a docs URL baked into generated program output, not just README prose. `colporteur/src/config.rs`'s `SAMPLE_CONFIG` carried one, written verbatim into every user's `config.toml` by `colporteur init`; fixed in colporteur#77, caught only because a review pass grepped `src/` against the ADR's advice not to bother.

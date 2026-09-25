@@ -12,7 +12,8 @@
 :root {
   color-scheme: light;
 
-  --sl-font: var(--face-display);
+  --sl-font: var(--face-text);
+  --sl-font-mono: var(--face-data);
 
   /* Starlight's light ramp runs dark at gray-1 to pale at gray-7. The chart has
      two inks and three stocks, so steps collapse. */
@@ -70,16 +71,6 @@
   --sl-color-red-low: var(--stock);
   --sl-color-red: var(--caution);
   --sl-color-red-high: var(--caution-deep);
-}
-
-/* Chrome is chart lettering, prose is chart legend: the narrow face labels,
-   the serif reads. */
-.site-title,
-.sidebar-content,
-.right-sidebar-panel,
-mobile-starlight-toc,
-.pagination-links {
-  font-family: var(--face-data);
 }
 
 .pagination-links a {
