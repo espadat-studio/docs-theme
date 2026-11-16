@@ -12,9 +12,11 @@ Consumers: [auberge](https://auberge.espadat.com),
 
 ## Install
 
+<!-- x-release-please-start-version -->
 ```json
 "@espadat/docs-theme": "github:espadat-studio/docs-theme#v0.4.1"
 ```
+<!-- x-release-please-end -->
 
 Peers `@astrojs/starlight@^0.42.0 || ^0.43.0` and `astro@^7.2.10`.
 
