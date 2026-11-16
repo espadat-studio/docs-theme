@@ -13,10 +13,10 @@ Consumers: [auberge](https://auberge.espadat.com),
 ## Install
 
 ```json
-"@espadat/docs-theme": "github:espadat-studio/docs-theme#v0.4.0"
+"@espadat/docs-theme": "github:espadat-studio/docs-theme#v0.4.1"
 ```
 
-Peers `@astrojs/starlight@^0.42.0` and `astro@^7.2.10`.
+Peers `@astrojs/starlight@^0.42.0 || ^0.43.0` and `astro@^7.2.10`.
 
 ## Wire it up
 
